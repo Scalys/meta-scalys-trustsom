@@ -1,0 +1,40 @@
+From 2f4de58c2a005060c47d9f67379d43240f100de2 Mon Sep 17 00:00:00 2001
+From: Joris van Vossen <joris.van.vossen@sintecs.nl>
+Date: Wed, 14 Mar 2018 15:27:54 +0100
+Subject: [PATCH] Concurrent AP mode removed and power save mode disabled to
+ keep RF initialized for BT.
+
+---
+ Makefile           | 2 +-
+ include/autoconf.h | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/Makefile b/Makefile
+index 032cbb3..e753323 100644
+--- a/Makefile
++++ b/Makefile
+@@ -18,7 +18,7 @@ EXTRA_CFLAGS += -Wno-unused-label
+ EXTRA_CFLAGS += -Wno-unused-parameter
+ EXTRA_CFLAGS += -Wno-unused-function
+ EXTRA_CFLAGS += -Wno-unused
+-EXTRA_CFLAGS += -DCONFIG_CONCURRENT_MODE
++#EXTRA_CFLAGS += -DCONFIG_CONCURRENT_MODE
+ 
+ ccflags-y += -D__CHECK_ENDIAN__
+ 
+diff --git a/include/autoconf.h b/include/autoconf.h
+index d5556af..6fb6fa9 100644
+--- a/include/autoconf.h
++++ b/include/autoconf.h
+@@ -71,7 +71,7 @@
+ #endif
+ 
+ 
+-#define CONFIG_IPS	1
++//#define CONFIG_IPS	1
+ #ifdef CONFIG_IPS
+ 	//#define CONFIG_IPS_LEVEL_2	1 //enable this to set default IPS mode to IPS_LEVEL_2
+ #endif
+-- 
+2.16.2
+
