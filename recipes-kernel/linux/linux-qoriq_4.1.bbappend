@@ -1,5 +1,7 @@
 FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
 
+DEPENDS += "u-boot-mkimage-native"
+
 SRC_URI_append_grapeboard += "\
     file://0001-arm64-dts-freescale-ls1012a-Add-DTS-support-for-Scal.patch \
     file://grapeboard.config \
