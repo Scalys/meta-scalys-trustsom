@@ -13,6 +13,7 @@ IMAGE_INSTALL += "\
     kernel-devicetree \
     kernel-modules \
     \
+    dhcp-client \
     kernel-module-8723bu \
     linux-firmware-rtl8723bu_bt \
     linux-firmware-rtl8723bu_nic \
