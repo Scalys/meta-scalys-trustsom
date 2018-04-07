@@ -1,0 +1,25 @@
+From ed797874cef9821160b7157634b75f53e405a893 Mon Sep 17 00:00:00 2001
+From: Dmitry Lavnikevich <dmitry.lavnikevich@edality.by>
+Date: Sat, 7 Apr 2018 15:57:41 +0300
+Subject: [PATCH] Fix 'python.h not found' build issue
+
+---
+ tools/Makefile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/tools/Makefile b/tools/Makefile
+index cb1683e153..36af94b106 100644
+--- a/tools/Makefile
++++ b/tools/Makefile
+@@ -230,7 +230,7 @@ always := $(hostprogs-y)
+ 
+ # Build a libfdt Python module if swig is available
+ # Use 'sudo apt-get install swig libpython-dev' to enable this
+-always += $(if $(shell which swig 2> /dev/null),_libfdt.so)
++# do not autodetect swig, there is no swig-native dependency always += $(if $(shell which swig 2> /dev/null),_libfdt.so)
+ 
+ # Generated LCD/video logo
+ LOGO_H = $(objtree)/include/bmp_logo.h
+-- 
+2.16.2
+

@@ -9,11 +9,9 @@ LIC_FILES_CHKSUM = " \
     file://Licenses/lgpl-2.1.txt;md5=4fbd65380cdd255951079008b364516c \
 "
 
-SRC_URI = "git://git.scalys.com/lsdk/u-boot;protocol=http;branch=grapeboard-proto"
-SRCBRANCH = "grapeboard-proto"
-SRCREV = "eb59b5064aad50871ab856924913c83797711ca6"
-
-do_compile_prepend () {
-    # Fix 'python.h not found' build issue
-    sed 's@\(^always += $(if $(shell which swig 2> /dev/null),_libfdt.so)$\)@# do not autodetect swig, there is no swig-native dependency \1@g' -i ${S}/tools/Makefile
-}
+SRC_URI = "git:///build/res/u-boot;nobranch=1 \
+    \
+    file://0001-Fix-python.h-not-found-build-issue.patch \
+    file://0002-Remove-dependency-on-generated-autoconf.h.patch \
+"
+SRCREV = "1871e1c708dcb86c60dd99af4cc1835568b7a599"
