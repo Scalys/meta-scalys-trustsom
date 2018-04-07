@@ -24,6 +24,10 @@ do_deploy_append() {
     KERNEL_UIMAGE_BASE_NAME="uImage-${PKGE}-${PKGV}-${PKGR}-${MACHINE}-${DATETIME}"
 
 	install -m 0644 ${KERNEL_UIMAGE} ${DEPLOYDIR}/${KERNEL_UIMAGE_BASE_NAME}.bin
+
+    # Create symlink to the latest build uImage
+    rm -f ${DEPLOYDIR}/uImage
+    ln -s ${KERNEL_UIMAGE_BASE_NAME}.bin ${DEPLOYDIR}/uImage
 }
 
 addtask uboot_mkimage before do_install after do_compile
