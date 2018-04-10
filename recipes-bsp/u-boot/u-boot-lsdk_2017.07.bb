@@ -9,9 +9,10 @@ LIC_FILES_CHKSUM = " \
     file://Licenses/lgpl-2.1.txt;md5=4fbd65380cdd255951079008b364516c \
 "
 
-SRC_URI = "git:///build/res/u-boot;nobranch=1 \
+SRCBRANCH = "scalys-lsdk-1803"
+SRC_URI = "git://git.scalys.com/lsdk/u-boot;protocol=git;branch=${SRCBRANCH} \
     \
     file://0001-Fix-python.h-not-found-build-issue.patch \
     file://0002-Remove-dependency-on-generated-autoconf.h.patch \
 "
-SRCREV = "1871e1c708dcb86c60dd99af4cc1835568b7a599"
+SRCREV = "da6dafeb26b827d753e027920d14a287f678d659"
