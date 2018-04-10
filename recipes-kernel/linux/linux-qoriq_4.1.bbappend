@@ -34,3 +34,20 @@ do_deploy_append() {
 }
 
 addtask uboot_mkimage before do_install after do_compile
+
+
+# Fix 'Too many levels of symbolic links' issue
+# NOTE: this issue was already fixed after fsl-sdk-v2.0-1703 release of the
+# meta-nxp-npi layer (see commit 2c82615597d98bc142cb750da4f8c47b45289d37).
+# TODO: Remove it when BSP is moved to the next NXP release
+python do_symlink_kernel_source() {
+    s = d.getVar("S", True)
+    if s[-1] == '/':
+        # drop trailing slash, so that os.symlink(kernsrc, s) doesn't use s as directory name and fail
+        s=s[:-1]
+    kernsrc = d.getVar("STAGING_KERNEL_DIR", True)
+    if d.getVar("EXTERNALSRC", True):
+        bb.utils.mkdirhier(kernsrc)
+        bb.utils.remove(kernsrc, recurse=True)
+        os.symlink(s, kernsrc)
+}
