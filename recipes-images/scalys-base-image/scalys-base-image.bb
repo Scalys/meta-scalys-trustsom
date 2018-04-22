@@ -1,4 +1,4 @@
-SUMMARY = "Scalys image for a SD cards"
+SUMMARY = "Scalys image for a SD cards. Can be used on USB/SATA with updated boot script"
 DESCRIPTION = ""
 LICENSE = "GPLV2"
 LIC_FILES_CHKSUM = ""
