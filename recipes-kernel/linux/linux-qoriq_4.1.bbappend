@@ -55,6 +55,7 @@ pkg_postrm_kernel-image() {
 
 FILES_kernel-image = "/boot/uImage"
 FILES_kernel-devicetree = "/boot/grapeboard.dtb"
+FILES_kernel-modules = "/lib"
 
 addtask uboot_mkimage before do_install after do_compile
 
