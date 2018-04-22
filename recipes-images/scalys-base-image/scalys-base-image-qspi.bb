@@ -13,4 +13,4 @@ IMAGE_INSTALL += "\
     u-boot-qspi-boot \
 "
 
-#IMAGE_FEATURES += "read-only-rootfs"
+IMAGE_FEATURES += "read-only-rootfs"
