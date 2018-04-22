@@ -4,14 +4,21 @@ LICENSE = "GPLV2"
 LIC_FILES_CHKSUM = ""
 
 
-require recipes-fsl/images/fsl-image-core.bb
+require recipes-core/images/core-image-minimal.bb
 
+PACKAGE_ARCH = "${MACHINE_ARCH}"
 
-IMAGE_FSTYPES = "tar.gz ext2.gz ext2.gz.u-boot ubi ubifs"
+IMAGE_FSTYPES = "tar.gz ubi"
+#IMAGE_FSTYPES = "tar.gz ext2.gz ext2.gz.u-boot jffs2 ubi"
 
 IMAGE_INSTALL += "\
+    kernel-image \
     kernel-devicetree \
     kernel-modules \
+    \
+    lsb \
+    udev-extraconf \
+    udev-rules-qoriq \
     \
     dhcp-client \
     kernel-module-8723bu \
@@ -23,14 +30,4 @@ IMAGE_INSTALL += "\
     \
     mtd-utils \
     mtd-utils-ubifs \
-    i2c-tools \
-    \
-    openssh \
-    \
-    packagegroup-core-full-cmdline \
-    tmux \
-    nano \
-    vim \
 "
-
-EXTRA_IMAGE_FEATURES += "tools-sdk tools-debug"
