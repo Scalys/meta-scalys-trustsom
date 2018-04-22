@@ -13,7 +13,7 @@ SRC_URI += "\
 
 inherit kernel-arch
 
-BOOT_SCRIPT_DESTNAME = "grapeboard_boot.src"
+BOOT_SCRIPT_DESTNAME = "grapeboard_boot.scr"
 
 do_compile() {
     uboot-mkimage -A ${UBOOT_ARCH} -O linux -T script -C none -a 0 -e 0 -n "${BOOT_SCRIPT_DESC}" -d "${WORKDIR}/${BOOT_SCRIPT}" ${BOOT_SCRIPT_DESTNAME}
