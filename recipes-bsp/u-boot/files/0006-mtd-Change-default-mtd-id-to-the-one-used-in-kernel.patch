@@ -1,0 +1,43 @@
+From c07e7c4d554450c0cd04f351d294fb8432c62c41 Mon Sep 17 00:00:00 2001
+From: Dmitry Lavnikevich <dmitry.lavnikevich@edality.by>
+Date: Sun, 22 Apr 2018 11:18:25 +0300
+Subject: [PATCH] mtd: Change default mtd id to the one used in kernel
+
+This allows to use mtdparts u-boot envorinment variable for in-kernel mtd partitions
+configuration via bootargs.
+
+Note: for mtdparts variable to be defined according according to defaults command
+mtdparts should be called before boot.
+---
+ include/configs/grapeboard.h | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/include/configs/grapeboard.h b/include/configs/grapeboard.h
+index b131e78e62..bb11102f6c 100644
+--- a/include/configs/grapeboard.h
++++ b/include/configs/grapeboard.h
+@@ -178,10 +178,10 @@
+ #endif
+ 
+ #define MTDIDS_DEFAULT \
+-	"nor0=qspi@40000000.0"
++	"nor0=1550000.quadspi"
+ 
+ #define MTDPARTS_DEFAULT    \
+-	"mtdparts=qspi@40000000.0:" \
++	"mtdparts=1550000.quadspi:" \
+ 		"2M@0x0(u-boot)," \
+ 		"256k(env)," \
+ 		"256k(ppa)," \
+@@ -288,7 +288,7 @@
+ 	COMMON_UBOOT_CONFIG \
+ 	BOOTENV					\
+ 	"boot_scripts=grapeboard_boot.scr grapeboard_recovery.scr\0"	\
+-	"default_bootargs=root=/dev/mmcblk0p1 rootfstype=ext4 rw rootwait\0" \
++	"default_bootargs=root=/dev/mmcblk0p1 rootfstype=ext4 rw rootwait $mtdparts\0" \
+ 	"default_boot=" \
+ 		"ext4load mmc 0:1 $fdt_addr_r /boot/grapeboard.dtb;" \
+ 		"ext4load mmc 0:1 $kernel_addr_r /boot/uImage;" \
+-- 
+2.17.0
+
