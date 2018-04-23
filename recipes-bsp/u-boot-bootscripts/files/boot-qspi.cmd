@@ -1,3 +1,4 @@
+pfe stop
 ubi part UBI
 ubifsmount ubi0:boot
 ubifsload $kernel_addr_r /boot/uImage

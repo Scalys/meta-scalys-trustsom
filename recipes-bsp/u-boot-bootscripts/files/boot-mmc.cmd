@@ -1,3 +1,4 @@
+pfe stop
 ext4load mmc 0:1 $kernel_addr_r /boot/uImage
 ext4load mmc 0:1 $fdt_addr_r /boot/grapeboard.dtb
 mtdparts
