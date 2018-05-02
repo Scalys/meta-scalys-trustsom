@@ -48,7 +48,7 @@ do_deploy_append() {
     ln -sf ${KERNEL_UIMAGE_BASE_NAME}.bin ${DEPLOYDIR}/uImage
 
     # Create symlink to the latest devicetree binary
-    DTB_NAME=`echo ${KERNEL_IMAGE_BASE_NAME} | sed "s/${MACHINE}/${DTB_BASE_NAME}/g"`
+    DTB_NAME=`echo ${KERNEL_UIMAGE_BASE_NAME} | sed "s/${MACHINE}/${DTB_BASE_NAME}/g"`
     ln -sf ${DTB_NAME}.dtb ${DEPLOYDIR}/${MACHINE}.dtb
 }
 
