@@ -22,8 +22,8 @@ IMAGE_INSTALL += "\
     \
     dhcp-client \
     kernel-module-8723bu \
-    linux-firmware-rtl8723bu_bt \
-    linux-firmware-rtl8723bu_nic \
+    linux-firmware-rtl8723bu-bt \
+    linux-firmware-rtl8723bu-nic \
     iw \
     wpa-supplicant \
     crda \

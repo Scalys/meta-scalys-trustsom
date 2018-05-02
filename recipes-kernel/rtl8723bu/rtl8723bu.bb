@@ -32,15 +32,16 @@ do_install() {
 }
 
 PACKAGES += "\
-    linux-firmware-rtl8723bu_bt \
-    linux-firmware-rtl8723bu_nic \
+    kernel-module-8723bu \
+    linux-firmware-rtl8723bu-bt \
+    linux-firmware-rtl8723bu-nic \
 "
 
 FILES_kernel-module-8723bu += "/etc"
 FILES_kernel-module-8723bu += "/lib/modules"
 FILES_kernel-module-8723bu += "/lib/firmware/rtl_bt/rtl8723b_fw.bin"
-FILES_linux-firmware-rtl8723bu_bt = "/lib/firmware/rtl_bt/rtl8723bu_bt.bin"
-FILES_linux-firmware-rtl8723bu_nic = "/lib/firmware/rtl_bt/rtl8723bu_nic.bin"
+FILES_linux-firmware-rtl8723bu-bt = "/lib/firmware/rtl_bt/rtl8723bu_bt.bin"
+FILES_linux-firmware-rtl8723bu-nic = "/lib/firmware/rtl_bt/rtl8723bu_nic.bin"
 
 KERNEL_MODULE_AUTOLOAD += "8723bu"
-MACHINE_EXTRA_RRECOMMENDS += "kernel-module-8723bu linux-firmware-rtl8723bu_nic linux-firmware-rtl8723bu_bt"
+MACHINE_EXTRA_RRECOMMENDS += "kernel-module-8723bu linux-firmware-rtl8723bu-nic linux-firmware-rtl8723bu-bt"
