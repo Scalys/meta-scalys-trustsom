@@ -1,16 +1,20 @@
+require recipes-kernel/linux/linux-qoriq_4.9.bb
+
+
 FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
 
 DEPENDS += "u-boot-mkimage-native"
 
-SRC_URI_append_grapeboard += "\
-    file://0001-arm64-dts-freescale-ls1012a-Add-DTS-support-for-Scal.patch \
-    file://0002-fsl_ppfe-Fix-phy-autonegotiation.patch \
+SRCBRANCH = "scalys-lsdk-1803"
+SRC_URI = "git://git.scalys.com/lsdk/linux;branch=${SRCBRANCH} \
+    \
     file://grapeboard.config \
 "
+SRCREV = "71b178eece9a264864a60c9cedfb9d235852a915"
 
+KERNEL_DEFCONFIG = "defconfig"
 DELTA_KERNEL_DEFCONFIG += " grapeboard.config"
 
-SRCREV = "1ae843c08261402b2c35d83422e4fa1e313611f4"
 
 do_uboot_mkimage() {
     # Compress Image
@@ -19,6 +23,7 @@ do_uboot_mkimage() {
     # Generate uImage
     uboot-mkimage -A ${UBOOT_ARCH} -O linux -T kernel -C gzip -a ${UBOOT_LOADADDRESS} -e ${UBOOT_ENTRYPOINT} -n "${DISTRO_NAME}/${PV}/${MACHINE}" -d arch/${ARCH}/boot/Image.gz arch/${ARCH}/boot/uImage
 }
+addtask uboot_mkimage before do_install after do_compile
 
 do_install() {
     mkdir -p ${D}/boot
@@ -31,9 +36,11 @@ do_install_append() {
     rm ${D}/${KERNEL_IMAGEDEST}/devicetree-${DTB_SYMLINK_NAME}.dtb
 }
 
+KERNEL_UIMAGE_BASE_NAME="uImage-${PKGE}-${PKGV}-${PKGR}-${MACHINE}-${DATETIME}"
+KERNEL_UIMAGE_BASE_NAME[vardepsexclude] = "DATETIME"
+
 do_deploy_append() {
     KERNEL_UIMAGE=arch/${ARCH}/boot/uImage
-    KERNEL_UIMAGE_BASE_NAME="uImage-${PKGE}-${PKGV}-${PKGR}-${MACHINE}-${DATETIME}"
 
     install -m 0644 ${KERNEL_UIMAGE} ${DEPLOYDIR}/${KERNEL_UIMAGE_BASE_NAME}.bin
 
@@ -56,22 +63,3 @@ pkg_postrm_kernel-image() {
 FILES_kernel-image = "/boot/uImage"
 FILES_kernel-devicetree = "/boot/grapeboard.dtb"
 FILES_kernel-modules = "/lib"
-
-addtask uboot_mkimage before do_install after do_compile
-
-
-# Fix 'Too many levels of symbolic links' issue
-# NOTE: this issue was already fixed after fsl-sdk-v2.0-1703 release of the
-# meta-nxp-npi layer (see commit 2c82615597d98bc142cb750da4f8c47b45289d37).
-# TODO: Remove it when BSP is moved to the next NXP release
-python do_symlink_kernel_source() {
-    s = d.getVar("S", True)
-    if s[-1] == '/':
-        # drop trailing slash, so that os.symlink(kernsrc, s) doesn't use s as directory name and fail
-        s=s[:-1]
-    kernsrc = d.getVar("STAGING_KERNEL_DIR", True)
-    if d.getVar("EXTERNALSRC", True):
-        bb.utils.mkdirhier(kernsrc)
-        bb.utils.remove(kernsrc, recurse=True)
-        os.symlink(s, kernsrc)
-}
