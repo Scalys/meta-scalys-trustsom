@@ -16,6 +16,8 @@ IMAGE_INSTALL += "\
     kernel-devicetree \
     kernel-modules \
     \
+    ppfe-firmware \
+    \
     lsb \
     udev-extraconf \
     udev-rules-qoriq \

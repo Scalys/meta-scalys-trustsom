@@ -1,4 +1,4 @@
-require recipes-bsp/u-boot/u-boot-qoriq_2017.09.bb
+require recipes-bsp/u-boot/u-boot-qoriq_2018.03.bb
 
 
 SRCBRANCH = "scalys-lsdk-1803"
