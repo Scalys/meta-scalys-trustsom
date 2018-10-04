@@ -25,6 +25,10 @@ do_install_append() {
     mkdir -p ${D}/boot
     install -m 0644 arch/${ARCH}/boot/uImage ${D}/boot/uImage
     install -m 0644 arch/${ARCH}/boot/dts/freescale/${MACHINE}.dtb ${D}/boot/${MACHINE}.dtb
+
+    # Clean up unnecessary images
+    rm -f ${D}/boot/devicetree-Image*.dtb
+    rm -f ${D}/boot/Image*
 }
 
 # Remove Image symlink installed into /boot by the kernel.bbclass
