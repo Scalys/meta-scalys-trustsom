@@ -12,3 +12,5 @@ IMAGE_FSTYPES = "tar.gz ext2.gz"
 IMAGE_INSTALL += "\
     u-boot-mmc-boot \
 "
+
+TOOLCHAIN_HOST_TASK += "nativesdk-cmake"
