@@ -17,7 +17,6 @@ IMAGE_INSTALL += "\
     kernel-modules \
     \
     ppfe-firmware \
-    ppa \
     \
     lsb \
     udev-extraconf \

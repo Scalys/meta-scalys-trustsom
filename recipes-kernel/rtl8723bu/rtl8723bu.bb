@@ -8,7 +8,7 @@ SRC_URI = "git://github.com/lwfinger/rtl8723bu.git;nobranch=1 \
     file://0001-Concurrent-AP-mode-removed-and-power-save-mode-disab.patch \
     file://COPYING \
 "
-SRCREV = "80916328932fa763bf4e37979aae70bd5e62da59"
+SRCREV = "c9549d172a4f9d6ccf6d528682640246a41c2f0c"
 
 inherit module
 

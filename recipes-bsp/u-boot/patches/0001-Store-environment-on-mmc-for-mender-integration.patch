@@ -1,0 +1,44 @@
+From 1790d7b6f2bcd036ace7dcbfc2cb7ab2413b5673 Mon Sep 17 00:00:00 2001
+From: Dmitry Lavnikevich <dmitry.lavnikevich@edality.by>
+Date: Tue, 14 Apr 2020 01:08:04 +0300
+Subject: [PATCH] Store environment on mmc for mender integration
+
+---
+ env/mmc.c                  | 2 +-
+ include/configs/trustbox.h | 2 ++
+ 2 files changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/env/mmc.c b/env/mmc.c
+index d329bea30f..b118e057c3 100644
+--- a/env/mmc.c
++++ b/env/mmc.c
+@@ -8,12 +8,12 @@
+ #include <common.h>
+ 
+ #include <command.h>
++#include <mmc.h>
+ #include <environment.h>
+ #include <fdtdec.h>
+ #include <linux/stddef.h>
+ #include <malloc.h>
+ #include <memalign.h>
+-#include <mmc.h>
+ #include <part.h>
+ #include <search.h>
+ #include <errno.h>
+diff --git a/include/configs/trustbox.h b/include/configs/trustbox.h
+index 86a8d6d450..cd5dad14f8 100644
+--- a/include/configs/trustbox.h
++++ b/include/configs/trustbox.h
+@@ -80,6 +80,8 @@
+ /*  MMC  */
+ #ifdef CONFIG_MMC
+ #define CONFIG_SYS_FSL_MMC_HAS_CAPBLT_VS33
++#define CONFIG_SYS_MMC_ENV_DEV 0
++#define CONFIG_SYS_MMC_ENV_PART 0
+ #endif
+ 
+ /* Mtdparts configuration */
+-- 
+2.26.0
+
