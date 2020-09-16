@@ -18,7 +18,6 @@ IMAGE_INSTALL += "\
     \
     ppfe-firmware \
     \
-    lsb \
     udev-extraconf \
     udev-rules-qoriq \
     \

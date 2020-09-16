@@ -1,12 +1,12 @@
-require recipes-bsp/u-boot/u-boot-qoriq-fw-utils_2018.03.bb
+require recipes-bsp/u-boot/u-boot-qoriq-fw-utils_2019.10.bb
 
 FILESEXTRAPATHS_prepend := "${THISDIR}/patches:${THISDIR}/files:"
 include recipes-bsp/u-boot/u-boot-fw-utils-mender.inc
 
-SRCBRANCH = "trustbox-1903"
+SRCBRANCH = "trustbox-2004"
 SRC_URI = "gitsm://github.com/Scalys/u-boot-qoriq.git;protocol=git;branch=${SRCBRANCH} \
 "
-SRCREV = "074705471b3630f2725794a69d2d1a0c471abdf2"
+SRCREV = "c70720e8ce8b3ef0959a1149fe04778bf36f0799"
 SRC_URI_append = "${@bb.utils.contains('MENDER_UBOOT_AUTO_CONFIGURE', \
     '1', \
     ' file://0001-Store-environment-on-mmc-for-mender-integration.patch', \

@@ -1,12 +1,14 @@
 LIC_FILES_CHKSUM = "file://COPYING;md5=bbea815ee2795b2f4230826c0c6b8814"
 
-SRCBRANCH="trustbox-1903"
+SRCBRANCH="trustbox-2004"
 SRC_URI = "\
     git://github.com/Scalys/linux-qoriq.git;branch=${SRCBRANCH} \
 "
-SRCREV = "481ae98fb3aa724409f0b2139845d34f5c87d4a8"
+SRCREV = "9560cf84cbc4808f730c1f4f54b106aa7e5baf92"
 
 DEPENDS += "u-boot-mkimage-native"
+
+DELTA_KERNEL_DEFCONFIG = "trustbox.config lsdk.conf "
 
 do_uboot_mkimage() {
     # Compress Image
@@ -36,4 +38,4 @@ pkg_postrm_kernel-image() {
 }
 
 FILES_${KERNEL_PACKAGE_NAME}-image += "/boot/uImage"
-FILES_${KERNEL_PACKAGE_NAME}-devicetree += "/boot/grapeboard.dtb"
+FILES_${KERNEL_PACKAGE_NAME}-devicetree += "/boot/trustbox.dtb"
