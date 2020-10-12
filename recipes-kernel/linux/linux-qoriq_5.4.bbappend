@@ -4,7 +4,7 @@ SRCBRANCH="trustbox-2004"
 SRC_URI = "\
     git://github.com/Scalys/linux-qoriq.git;branch=${SRCBRANCH} \
 "
-SRCREV = "9560cf84cbc4808f730c1f4f54b106aa7e5baf92"
+SRCREV = "8cdf263cc18a9d0f7509d6b7fbaab3d620c7a656"
 
 DEPENDS += "u-boot-mkimage-native"
 
