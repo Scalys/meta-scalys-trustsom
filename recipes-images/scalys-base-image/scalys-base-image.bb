@@ -10,10 +10,10 @@ require scalys-base-image.inc
 IMAGE_FSTYPES = "tar.gz ext2.gz"
 
 IMAGE_INSTALL += "\
-    u-boot-mmc-boot \
-    \
     iotedge-cli \
     iotedge-daemon \
+    \
+    optee-test-qoriq \
 "
 
 TOOLCHAIN_HOST_TASK += "nativesdk-cmake"
