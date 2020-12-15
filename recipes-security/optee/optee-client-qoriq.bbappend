@@ -1,9 +1,7 @@
-SRC_URI = "gitsm://github.com/ms-iot/optee_client.git;protocol=https;branch=ms-iot-openenclave-3.6.0"
-SRCREV = "4e91c54a6384f7975779d61d88c8da1a5e0dd799"
+SUMMARY = "OPTEE Client"
+HOMEPAGE = "https://github.com/qoriq-open-source/optee_client"
 
-do_install_prepend() {
-    export SBINDIR="/bin"
-    export BINDIR="/bin"
-    export LIBDIR="/lib"
-    export INCLUDEDIR="/include"
-}
+SRC_URI_remove = "git://source.codeaurora.org/external/qoriq/qoriq-components/optee_client;nobranch=1"
+SRC_URI += "git://git@github-readonly-shared/Scalys/trustsom-optee_client.git;branch=trustsom-LSDK-20.04;protocol=ssh"
+SRCREV = "08428734c67fb559e420d87fa52fd74a955ea1bd"
+ 

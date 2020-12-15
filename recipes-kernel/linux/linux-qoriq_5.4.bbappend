@@ -1,41 +1,5 @@
-LIC_FILES_CHKSUM = "file://COPYING;md5=bbea815ee2795b2f4230826c0c6b8814"
+SRC_URI_remove = "git://source.codeaurora.org/external/qoriq/qoriq-components/linux;nobranch=1"
+SRC_URI += "git://git@github-readonly-shared/Scalys/trustsom-linux.git;nobranch=1;protocol=ssh"
+SRCREV = "f1af166badd6ebafa4500e4ca5714bfa7ec6bde9"
 
-SRCBRANCH="trustbox-2004"
-SRC_URI = "\
-    git://github.com/Scalys/linux-qoriq.git;branch=${SRCBRANCH} \
-"
-SRCREV = "8cdf263cc18a9d0f7509d6b7fbaab3d620c7a656"
-
-DEPENDS += "u-boot-mkimage-native"
-
-DELTA_KERNEL_DEFCONFIG = "trustbox.config lsdk.conf "
-
-do_uboot_mkimage() {
-    # Compress Image
-    gzip -9c < arch/${ARCH}/boot/Image > arch/${ARCH}/boot/Image.gz
-
-    # Generate uImage
-    uboot-mkimage -A ${UBOOT_ARCH} -O linux -T kernel -C gzip -a ${UBOOT_LOADADDRESS} -e ${UBOOT_ENTRYPOINT} -n "${DISTRO_NAME}/${PV}/${MACHINE}" -d arch/${ARCH}/boot/Image.gz arch/${ARCH}/boot/uImage
-}
-addtask uboot_mkimage before do_install after do_compile
-
-do_install_append() {
-    mkdir -p ${D}/boot
-    install -m 0644 arch/${ARCH}/boot/uImage ${D}/boot/uImage
-    install -m 0644 arch/${ARCH}/boot/dts/freescale/${MACHINE}.dtb ${D}/boot/${MACHINE}.dtb
-
-    # Clean up unnecessary images
-    rm -f ${D}/boot/devicetree-Image*.dtb
-    rm -f ${D}/boot/Image*
-}
-
-# Remove Image symlink installed into /boot by the kernel.bbclass
-pkg_postinst_kernel-image() {
-    true
-}
-pkg_postrm_kernel-image() {
-    true
-}
-
-FILES_${KERNEL_PACKAGE_NAME}-image += "/boot/uImage"
-FILES_${KERNEL_PACKAGE_NAME}-devicetree += "/boot/trustbox.dtb"
+#DELTA_KERNEL_DEFCONFIG_prepend_trustsom-tbdconnect = "trustsom-tbdconnect.config "

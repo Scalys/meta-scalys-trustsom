@@ -1,5 +1,7 @@
-SRC_URI = "gitsm://github.com/OP-TEE/optee_test.git;protocol=https \
-    file://0001-use-python3-instead-of-python.patch \
-"
+#SUMMARY = "OP-TEE sanity testsuite"
+#HOMEPAGE = "https://github.com/qoriq-open-source/optee_test"
 
-SRCREV = "40aacb6dc33bbf6ee329f40274bfe7bb438bbf53"
+SRC_URI_remove = "git://source.codeaurora.org/external/qoriq/qoriq-components/optee_test;nobranch=1"
+SRC_URI += "git://git@github-readonly-shared/Scalys/trustsom-optee_test.git;branch=trustsom-LSDK-20.04;protocol=ssh"
+SRCREV = "669058459e4a544be12f37dab103ee4c2b32e31d"
+ 

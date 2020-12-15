@@ -1,11 +1,9 @@
-LIC_FILES_CHKSUM = "file://${S}/LICENSE;md5=c1f21c4f72f372ef38a5a4aee55ec173"
+#SUMMARY = "OP-TEE Trusted OS"
+#DESCRIPTION = "OPTEE OS"
 
-DEPENDS += "python3-pyelftools-native"
+SRC_URI_remove = "git://source.codeaurora.org/external/qoriq/qoriq-components/optee_os;nobranch=1"
+SRC_URI += "git://git@github-readonly-shared/Scalys/trustsom-optee_os.git;branch=trustsom-LSDK-20.04;protocol=ssh"
+SRCREV = "4b10dd24a1bc897c48b50ab56b40b82fcfeaf4f9"
+ 
+OPTEEMACHINE_trustsom-tbdconnect = "trustsom_tbdconnect"
 
-
-SRCREV = "e2d570599f761dd2a3b05ce315b317888504b39c"
-SRC_URI = "gitsm://github.com/ms-iot/optee_os.git;protocol=https;branch=ms-iot-openenclave-3.6.0 \
-           file://0001-allow-setting-sysroot-for-libgcc-lookup.patch \
-           file://0001-use-python3-instead-of-python.patch \
-          "
-OPTEEMACHINE_trustbox = "ls1012grapeboard"
