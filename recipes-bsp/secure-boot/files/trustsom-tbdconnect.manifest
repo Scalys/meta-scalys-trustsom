@@ -1,0 +1,21 @@
+# [general]
+machine=trustsom-tbdconnect
+
+# [firmware_images]
+rcw_sd=rcw/trustsom_tbdconnect/N_NNNN_0x0000/rcw_1500_sdboot.bin
+atf_bl2_sd=atf/bl2_sd.pbl
+atf_bl2_sd_sec=atf/bl2_sd_sec.pbl
+atf_fip_uboot=atf/fip_uboot.bin
+atf_fip_uboot_sec=atf/fip_uboot_sec.bin
+secureboot_headers_sd=secboot_hdrs/secboot_hdrs_sdboot.bin
+dp_firmware=dp/ls1028a-dp-fw.bin
+
+# [linux, dtb, rfs]
+kernel_img=Image
+device_tree=trustsom-tbdconnect.dtb
+kernel_itb=kernel-trustsom-tbdconnect.itb
+
+# [secure boot scripts in cst]
+sd_script=platforms/ls1028_secboot_hdr.sh
+
+#TODO add bootscripts and other missing items (ref: meta-qoriq/recipes-bsp/secure-boot/secure-boot-qoriq/ls1028ardb.manifest)

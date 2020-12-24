@@ -1,0 +1,20 @@
+--- a/create_secure_boot_image.sh
++++ b/create_secure_boot_image.sh
+@@ -122,7 +122,7 @@
+         . $xspi_script
+     fi
+ 
+-    if [ "${1:0:7}"  = "ls1028a" ]; then
++    if [ "${1:0:7}" = "ls1028a" ] || [ "${1:0:7}" = "trustso" ]; then
+         cp $TOPDIR/secboot_hdrs.bin $DEPLOYDIR/secboot_hdrs/secboot_hdrs_${2}boot.bin
+     else
+         cp $TOPDIR/secboot_hdrs_${2}boot.bin $DEPLOYDIR/secboot_hdrs/
+@@ -301,7 +301,7 @@
+     fi
+ 
+     # DP (Display Port) firmware
+-    if [ -n "$dp_firmware" ] && [ "${1:0:7}" = "ls1028a" ]; then
++    if [ -n "$dp_firmware" ] && ([ "${1:0:7}" = "ls1028a" ] || [ "${1:0:7}" = "trustso" ]); then
+         if [ "$2" = "nor" -o "$2" = "qspi" -o "$2" = "xspi" -o "$2" = "nand" ]; then
+             val=`expr $(echo $(($nor_dp_firmware_offset))) / 1024`
+             dd if=$DEPLOYDIR/$dp_firmware of=$fwimg bs=1K seek=$val
