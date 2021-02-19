@@ -2,7 +2,7 @@
 machine=trustsom-tbdconnect
 
 # [firmware_images]
-rcw_sd=rcw/trustsom_tbdconnect/N_NNNN_0x0000/rcw_1500_sdboot.bin
+rcw_sd=rcw/trustsom_tbdconnect/N_SQPP_0x85BB/rcw_1500_sdboot.bin
 atf_bl2_sd=atf/bl2_sd.pbl
 atf_bl2_sd_sec=atf/bl2_sd_sec.pbl
 atf_fip_uboot=atf/fip_uboot.bin
@@ -16,6 +16,7 @@ device_tree=trustsom-tbdconnect.dtb
 kernel_itb=kernel-trustsom-tbdconnect.itb
 
 # [secure boot scripts in cst]
+#TODO provide an updated script for our use case
 sd_script=platforms/ls1028_secboot_hdr.sh
 
 #TODO add bootscripts and other missing items (ref: meta-qoriq/recipes-bsp/secure-boot/secure-boot-qoriq/ls1028ardb.manifest)

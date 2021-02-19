@@ -1,21 +1,14 @@
-require recipes-fsl/images/fsl-image-networking.bb
+require trustsom-base-image.bb
 
 export IMAGE_BASENAME = "trustsom-test-image"
 
-PACKAGE_ARCH = "${MACHINE_ARCH}"
-
-IMAGE_FSTYPES = "tar.gz ext4"
 # Increase ext4 image size with 1GB of free space
 IMAGE_ROOTFS_EXTRA_SPACE = "1048576"
 
-IMAGE_INSTALL_append = " kernel-image kernel-devicetree"
+SUMMARY = "An image that can be used for testing the Scalys TrustSoM."
 
-SUMMARY = "An image that can be used for evaluating the Scalys TrustSoM."
-
-DESCRIPTION = "This is an image which includes OP-TEE, some helpful tools and \
+DESCRIPTION = "This is an image which includes some helpful tools and \
 Freescale-specific packages."
-
-LICENSE = "MIT"
 
 IMAGE_INSTALL_benchmark_tests = "\
     rt-tests \
@@ -40,41 +33,32 @@ IMAGE_INSTALL_devtools = "\
     strace \
     lsof \
     tcpdump \
-    \
     ncurses \
     packagegroup-core-sdk \
     packagegroup-core-standalone-sdk-target \
-    \
     spidev-test \
     spitools \
-    \
     usbutils \
+    i2c-tools \
+    nano \
+    tmux \
+    openssh \
+"
+
+IMAGE_INSTALL_virtualization = "\
+    qemu \
+    qemu-dev \
+    libvirt \
+    libvirt-dev \
+    libvirt-libvirtd \
+    libvirt-virsh \
+    iptables \
+    bridge-utils \
+    tunctl \
 "
 
 IMAGE_INSTALL += "\
-    \
-    kernel-devicetree \
-    kernel-modules \
-    \
-    packagegroup-core-full-cmdline \
-    \
-    openssh \
-    \
-    tmux \
-    \
-    i2c-tools \
-    nano \
-    vim \
-    \
-    mtd-utils \
-    \
-    ccid \
-    opensc \
-    pcsc-lite \
-    \
     ${IMAGE_INSTALL_devtools} \
     ${IMAGE_INSTALL_benchmark_tests} \
-"
-
-IMAGE_INSTALL_remove += "\
+    ${IMAGE_INSTALL_virtualization} \
 "
