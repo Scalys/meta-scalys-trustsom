@@ -3,11 +3,15 @@ machine=trustsom-tbdconnect
 
 # [firmware_images]
 rcw_sd=rcw/trustsom_tbdconnect/N_SQPP_0x85BB/rcw_1500_sdboot.bin
+rcw_emmc=rcw/trustsom_tbdconnect/N_SQPP_0x85BB/rcw_1500_emmcboot.bin
 atf_bl2_sd=atf/bl2_sd.pbl
 atf_bl2_sd_sec=atf/bl2_sd_sec.pbl
+atf_bl2_emmc=atf/bl2_emmc.pbl
+atf_bl2_emmc_sec=atf/bl2_emmc_sec.pbl
 atf_fip_uboot=atf/fip_uboot.bin
 atf_fip_uboot_sec=atf/fip_uboot_sec.bin
 secureboot_headers_sd=secboot_hdrs/secboot_hdrs_sdboot.bin
+secureboot_headers_emmc=secboot_hdrs/secboot_hdrs_emmcboot.bin
 dp_firmware=dp/ls1028a-dp-fw.bin
 
 # [linux, dtb, rfs]
@@ -15,8 +19,20 @@ kernel_img=Image
 device_tree=trustsom-tbdconnect.dtb
 kernel_itb=kernel-trustsom-tbdconnect.itb
 
-# [secure boot scripts in cst]
-#TODO provide an updated script for our use case
-sd_script=platforms/ls1028_secboot_hdr.sh
+# [distro autoboot script]
+distro_bootscript=trustsom-tbdconnect_boot.scr
 
-#TODO add bootscripts and other missing items (ref: meta-qoriq/recipes-bsp/secure-boot/secure-boot-qoriq/ls1028ardb.manifest)
+securevalidate="setenv secureboot_validate \
+'load \$devtype \$devnum:\$devpart_root \$kernelheader_addr_r /boot/secboot_hdrs.bin; \
+esbc_validate \$kernelheader_addr_r'"
+
+distroboot="setenv devpart_root 1;\
+part uuid \$devtype \$devnum:\$devpart_root partuuidr;\
+setenv bootargs console=ttyS0,115200 earlycon=uart8250,mmio,0x21c0500 root=PARTUUID=\$partuuidr rw rootwait iommu.passthrough=1 arm-smmu.disable_bypass=0 \$othbootargs;\
+load \$devtype \$devnum:\$devpart_root \$load_addr /boot/kernel-trustsom-tbdconnect.itb;\
+env exists secureboot && echo validating secureboot && run secureboot_validate;\
+bootm \$load_addr#trustsom-tbdconnect"
+
+# [secure boot scripts in cst]
+sd_script=platforms/ls1028_secboot_hdr.sh
+emmc_script=platforms/ls1028_secboot_hdr.sh

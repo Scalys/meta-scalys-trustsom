@@ -6,6 +6,17 @@ SRCREV = "217a00f8acffd2bc71e8be7857b96a53262a9e9f"
 PLATFORM_trustsom-tbdconnect = "ls1028trustsom"
 RCW_FOLDER_trustsom-tbdconnect = "trustsom_tbdconnect"
 
+# set 'DISTRO_FEATURES_append = " secure"' in local.conf to enable secure boot
+# set 'DISTRO_FEATURES_append = " srk_revocation_support"' in local.conf to enable the use of multiple SRK pairs so that key revocation is supported.
+# Set the following in local.conf if 'srk_revocation_support' is enabled:
+# SECURE_PRI_KEYS = "<path/to/keydir/*.pri>"
+# SECURE_PUB_KEYS = "<path/to/keydir/*.pub>"
+# BL33_INPUT_FILE = "<path/to/dir/bl33_input_file>"
+# BL31_INPUT_FILE = "<path/to/dir/bl31_input_file>"
+# BL32_INPUT_FILE = "<path/to/dir/bl32_input_file>"
+# BL2_INPUT_FILE = "<path/to/dir/bl2_input_file>"
+# PBI_INPUT_FILE = "<path/to/dir/pbi_input_file>"
+
 BUILD_SRK_REVOK_SUPPORT = "${@bb.utils.contains('DISTRO_FEATURES', 'srk_revocation_support', 'true', 'false', d)}"
 
 # For now we will abuse the 'ddrphyopt' variable used in the 'do_compile' function to support custom input files for the signing else we have to completely override / patch the 'do_compile' function.
