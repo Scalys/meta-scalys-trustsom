@@ -31,6 +31,16 @@ IMAGE_INSTALL += "\
     ccid \
     opensc \
     pcsc-lite \
+    tpm2-tools \
+    trousers \
+    tpm2-tss \
+    libtss2 \
+    libtss2-mu \
+    libtss2-tcti-device \
+    libtss2-tcti-mssim \
+    tpm2-abrmd \
+    ibmswtpm2 \
+    cryptsetup-tpm-incubator \
 "
 
 
