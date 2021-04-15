@@ -13,6 +13,5 @@ BBLAYERS ?= " \
   "
 
 BBLAYERS_EXTRA = " \
-  ##OEROOT##/../meta-laird-cp \
   ##OEROOT##/../meta-security/meta-tpm \
   "

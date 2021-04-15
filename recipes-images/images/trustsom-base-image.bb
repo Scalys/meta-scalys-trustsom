@@ -44,11 +44,9 @@ IMAGE_INSTALL += "\
 "
 
 
-# Support for Laird Wi-Fi module. Requires meta-laird-cp layer.
+# Support for Wi-Fi module.
 IMAGE_INSTALL += "   \
   ca-certificates \
-  sterling-backports-laird \
-  sterling60-firmware-usb-usb \
   iproute2 \
   rng-tools \
   tzdata \
@@ -58,9 +56,8 @@ IMAGE_INSTALL += "   \
   tcpdump \
   iw \
   wpa-supplicant \
+  rfkill \
+  dhcpcd \
+  linux-firmware-iwlwifi-misc \
+  linux-firmware-ibt-misc \
 "
-# meta-laird-cp can also provide a custom wpa-supplicant and networkmanager if desired.
-# You can use it by specifying the following in the local.conf file:
-#PREFERRED_RPROVIDER_wpa-supplicant = "sterling-supplicant"
-#PREFERRED_RPROVIDER_wpa-supplicant-cli = "sterling-supplicant"
-#PREFERRED_RPROVIDER_wpa-supplicant-passphrase = "sterling-supplicant"

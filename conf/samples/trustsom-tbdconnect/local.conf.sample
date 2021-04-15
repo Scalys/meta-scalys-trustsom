@@ -107,13 +107,3 @@ PACKAGECONFIG_append_pn-qemu-system-native = " sdl"
 # track the version of this file when it was generated. This can safely be ignored if
 # this doesn't mean anything to you.
 CONF_VERSION = "1"
-
-# We specify to use wpa-supplicant to prevent a warning from the sterling-supplicant package
-PREFERRED_RPROVIDER_wpa-supplicant ?= "wpa-supplicant"
-PREFERRED_RPROVIDER_wpa-supplicant-cli ?= "wpa-supplicant"
-PREFERRED_RPROVIDER_wpa-supplicant-passphrase ?= "wpa-supplicant"
-PREFERRED_RPROVIDER_wireless-regdb-static = "sterling60-firmware-usb-usb"
-BBMASK_append = " \
-    meta-laird-cp/recipes-packages/openssl \
-    meta-laird-cp/recipes-packages/.*/.*openssl10.* \
-"
