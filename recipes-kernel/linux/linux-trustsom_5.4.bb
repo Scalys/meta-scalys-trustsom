@@ -1,9 +1,11 @@
 require linux-trustsom.inc
 
-LINUX_VERSION ?= "5.4.47-trustsom"
-
-SRC_URI_append = "git://git@github-readonly-shared/Scalys/trustsom-linux.git;nobranch=1;protocol=ssh"
-
-# This SRC_URI is based on the LSDK-20.12-V5.4 tag of the qoriq linux repository
-SRCREV_trustsom  = "66122fe32572f768dee2c0e304c1e610b0c23b04"
-KBRANCH = "trustsom-LSDK-20.12-V5.4"
+LINUX_VERSION ?= "5.4.155-trustsom"
+#commit 4f508aa9dd3bde7a1c5e4e6de72abb8a03fd504a
+#Author: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+#Date:   Wed Oct 20 11:40:18 2021 +0200
+#
+#    Linux 5.4.155
+SRC_URI_append = "git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable-rc.git;nobranch=1;protocol=https"
+     
+SRCREV  = "4f508aa9dd3bde7a1c5e4e6de72abb8a03fd504a"

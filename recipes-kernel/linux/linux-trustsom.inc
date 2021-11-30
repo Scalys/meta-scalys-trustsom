@@ -1,13 +1,14 @@
 require recipes-kernel/linux/linux-yocto.inc
 
+KERNEL_FEATURES_remove = "cfg/virtio.scc"
+
 # Make sure dependencies are available early in the build process
 do_kernel_metadata[depends] += "flex-native:do_populate_sysroot bison-native:do_populate_sysroot gcc:do_install"
 
 PV = "${LINUX_VERSION}+git${SRCPV}"
 
 SRC_URI = "\
-    file://enable_uart.cfg \
-    file://enable_networking.cfg \
+    file://base_config.cfg \
 "
 LIC_FILES_CHKSUM = "file://COPYING;md5=bbea815ee2795b2f4230826c0c6b8814"
 
